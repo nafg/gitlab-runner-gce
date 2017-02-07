@@ -128,7 +128,8 @@ gcloud --project $PROJECT_ID compute ssh gitlab-ci-runner-as-1
 
 ## Unresolved
 
-I still haven't found out why the Cache is not working properly, it might be the way the
-Gitlab Runner currently handles Google Cloud Storage endpoint with the S3 compatibility mode.
-I'll try to find time to fork the runner repository and rewrite the minion cache client to use the latest information
-of how the GCS wants to handle the interoperability communication.
+Google Cloud Storage is not currently supported by the distributed cache, even though it has an S3 compability mode. There's a ticket about that [here](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/1773), which says
+
+> Google Cloud Storage runs an older version of the S3 protocol that doesn't work well with the caching configuration.
+
+and a WIP merge request [here](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/merge_requests/447).
